@@ -17,14 +17,14 @@ DOSEN PENGAMPU : TAOFIK MUHAMMAD, S.PD,M.KOM
 Pengelola UMKM sering mengalami kesulitan dalam memantau ketersediaan stok barang secara akurat sehingga beberapa barang mengalami kehabisan stok, sedangkan barang lainnya menumpuk dalam jumlah besar. Aplikasi web berbasis **Laravel** ini dikembangkan (tanpa database, memanfaatkan Array PHP) untuk menghitung stok akhir secara otomatis, mendeteksi ketidakvalidan data pencatatan stok, mengelompokkan status persediaan, serta menyusun rekomendasi prioritas pengadaan beserta estimasi anggarannya.
 
 ## Implementasi Routing, Controller, dan Blade View (MVC)
-1.Routing (`routes/web.php`):** Menerapkan 7 route yang mencakup halaman utama, daftar barang, penyaringan berdasarkan kategori dan prioritas menggunakan parameter URL (`{kategori}`, `{kode}`, `{prioritas}`), serta halaman analisis stok dan rekomendasi.
-2. Controller (`app/Http/Controllers/`):** Terdiri dari 3 controller (`DashboardController`, `BarangController`, dan `AnalisisController`) yang menangani seluruh proses perhitungan stok, validasi data negatif, klasifikasi status, serta pengurutan prioritas belanja.
-3. Blade View (`resources/views/`):** Terdiri dari 7 template Blade yang menerapkan layout inheritance (`@extends`, `@section`, `@yield`), perulangan (`@foreach`), dan percabangan (`@if`) dengan antarmuka Bootstrap 5.
+1.Routing (`routes/web.php`): Menerapkan 7 route yang mencakup halaman utama, daftar barang, penyaringan berdasarkan kategori dan prioritas menggunakan parameter URL (`{kategori}`, `{kode}`, `{prioritas}`), serta halaman analisis stok dan rekomendasi.
+2. Controller (`app/Http/Controllers/`): Terdiri dari 3 controller (`DashboardController`, `BarangController`, dan `AnalisisController`) yang menangani seluruh proses perhitungan stok, validasi data negatif, klasifikasi status, serta pengurutan prioritas belanja.
+3. Blade View (`resources/views/`): Terdiri dari 7 template Blade yang menerapkan layout inheritance (`@extends`, `@section`, `@yield`), perulangan (`@foreach`), dan percabangan (`@if`) dengan antarmuka Bootstrap 5.
 
 ## Logika Perhitungan & Analisis
-* **Perhitungan Stok Akhir: `Stok Akhir = Stok Awal + Barang Masuk - Barang Keluar`
-* **Validasi Data Persediaan: Jika `Stok Akhir < 0` atau terdapat nilai input negatif, barang ditandai sebagai **Tidak Valid** dan dikecualikan dari perhitungan pengadaan.
-* **Klasifikasi Kondisi Stok:
+* Perhitungan Stok Akhir: `Stok Akhir = Stok Awal + Barang Masuk - Barang Keluar`
+* Validasi Data Persediaan: Jika `Stok Akhir < 0` atau terdapat nilai input negatif, barang ditandai sebagai **Tidak Valid** dan dikecualikan dari perhitungan pengadaan.
+* Klasifikasi Kondisi Stok:
   * `Stok Akhir == 0` -> Stok Habis (Prioritas Pengadaan: **Tinggi**)
   * `Stok Akhir <= Stok Minimum` -> Stok Menipis(Prioritas Pengadaan: **Sedang**)
   * `Stok Akhir > Stok Minimum` -> Stok Aman
@@ -46,4 +46,4 @@ Pengelola UMKM sering mengalami kesulitan dalam memantau ketersediaan stok baran
 3. Salin file `.env.example` menjadi `.env`, lalu buat key aplikasi menggunakan `php artisan key:generate`.
 4. Jalankan server lokal dengan perintah `php artisan serve`.
 5. Buka browser dan akses alamat `http://127.0.0.1:8000`.
-6.
+  
